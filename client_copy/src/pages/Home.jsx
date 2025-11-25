@@ -1,0 +1,252 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Carousel from '../components/carousel/Carousel';
+import BlogCardLarge from '../components/BlogCardLarge';
+import Footer from '../components/Footer';
+import Galaxy from '../components/Galaxy';
+import ProfileCard from '../components/ProfileCard';
+import localBlogs from '../data/blogs';
+
+function Home() {
+  const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showAllBlogs, setShowAllBlogs] = useState(false);
+  const [blogs, setBlogs] = useState(localBlogs || []);
+
+  useEffect(() => {
+    let mounted = true;
+    const apiUrl = import.meta.env.VITE_API_URL || '';
+    
+    fetch(`${apiUrl}/api/blogs`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (!mounted) return;
+        if (Array.isArray(data) && data.length) setBlogs(data);
+      })
+      .catch(() => {
+        // keep local fallback
+      });
+
+    return () => { mounted = false; };
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#0a0b14]">
+      {/* Navbar */}
+      <nav className="absolute top-4 left-4 right-4 z-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-lg transform-gpu transition-all duration-300 hover:bg-white/15 overflow-hidden">
+            <div className="flex items-center justify-between h-16 px-4 md:px-8">
+              {/* Logo */}
+              <div className="flex-shrink-0">
+                <button 
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    navigate('/');
+                  }}
+                  className="relative hover:scale-105 transition-transform duration-200 inline-block"
+                >
+                  <img 
+                    src="/logo.png" 
+                    alt="The Jargonaut Logo" 
+                    className="h-14 md:h-20 lg:h-24 w-auto object-contain"
+                  />
+                </button>
+              </div>
+              
+              {/* Desktop Navigation Items */}
+              <div className="hidden md:block">
+                <div className="ml-10 flex items-center space-x-8">
+                  <a href="#blogs" className="nav-link relative px-6 py-2 text-white/90 hover:text-white transition-all duration-200 hover:scale-105 group">
+                    Blogs
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-full transition-all duration-200"></div>
+                  </a>
+                  <a href="#about" className="nav-link relative px-6 py-2 text-white/90 hover:text-white transition-all duration-200 hover:scale-105 group">
+                    About
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-full transition-all duration-200"></div>
+                  </a>
+                  <a href="#contact" className="nav-link relative px-6 py-2 text-white/90 hover:text-white transition-all duration-200 hover:scale-105 group">
+                    Contact Us
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-full transition-all duration-200"></div>
+                  </a>
+                </div>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden text-white p-2 hover:bg-white/10 rounded-full transition-all duration-200 z-10"
+                aria-label="Toggle menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {mobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Menu */}
+            <div 
+              className={`md:hidden transition-all duration-300 ease-in-out ${
+                mobileMenuOpen 
+                  ? 'max-h-48 opacity-100' 
+                  : 'max-h-0 opacity-0 pointer-events-none'
+              }`}
+            >
+              <div className="px-4 pb-4 pt-2 space-y-1 border-t border-white/10">
+                <a 
+                  href="#blogs" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 text-sm font-medium"
+                >
+                  Blogs
+                </a>
+                <a 
+                  href="#about" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 text-sm font-medium"
+                >
+                  About
+                </a>
+                <a 
+                  href="#contact" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-3 text-white/90 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-200 text-sm font-medium"
+                >
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      {/* Hero Section */}
+      <div className="relative h-screen overflow-hidden">
+        {/* Galaxy Background */}
+        <div className="absolute inset-0 w-full h-full z-10">
+          <Galaxy 
+            mouseRepulsion={true}
+            mouseInteraction={true}
+            density={1.5}
+            glowIntensity={0.5}
+            saturation={0.2}
+            hueShift={200}
+            transparent={false}
+            repulsionStrength={3}
+            twinkleIntensity={0.5}
+          />
+        </div>
+        
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0b14] z-20 pointer-events-none" />
+        
+        {/* Hero Title */}
+        <div className="absolute inset-0 z-30 pointer-events-none">
+          <div className="max-w-7xl mx-auto h-full">
+            <div className="h-full flex flex-col justify-center px-4 md:px-8">
+              <h1 className="hero-title text-4xl sm:text-5xl md:text-8xl lg:text-9xl text-white tracking-wide break-words">
+                THE<br />
+                <span className="font-bold">JARGONAUT</span>
+              </h1>
+              <p className="text-sm md:text-base lg:text-lg text-white/90 max-w-xl mt-4 md:mt-6 tracking-wide md:tracking-wider uppercase">
+                Get ready to embark on a voyage of corporate law in the spaceship of pop-culture
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Featured Blogs Section */}
+      <div id="blogs" className="min-h-screen px-8 py-20 text-white/90">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-5xl font-bold text-white mb-4 text-center">Featured Blogs</h2>
+          <p className="text-lg text-white/70 text-center mb-12 max-w-2xl mx-auto">
+            Discover our latest insights on corporate law, fintech regulations, and market dynamics
+          </p>
+          <Carousel />
+          
+          {/* All Blogs Grid Section */}
+          <div className="mt-20">
+            <h3 className="text-3xl font-bold text-white mb-8">All Blog Posts</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {(showAllBlogs ? blogs : blogs.slice(0, 3)).map((blog) => (
+                <BlogCardLarge key={blog.id} blog={blog} />
+              ))}
+            </div>
+            
+            {/* View All Blogs Button */}
+            {!showAllBlogs && (
+              <div className="mt-12 text-center">
+                <button
+                  onClick={() => setShowAllBlogs(true)}
+                  className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold py-3 px-10 rounded-full border border-white/30 transition-all duration-300 hover:scale-105"
+                >
+                  View All Blogs
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      
+      {/* About Section */}
+      <div id="about" className="px-8 py-20 bg-gradient-to-b from-[#0a0b14] via-[#0f1020] to-[#0a0b14]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-white mb-4">About The Jargonaut</h2>
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+              Your guide to navigating corporate law through the lens of pop culture
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+            {/* Profile Card - LEFT SIDE */}
+            <div className="flex justify-center">
+              <ProfileCard
+                name="Dev Agrawal"
+                title="Legal Tech Blogger"
+                handle="aryanagrawal"
+                status="Writing Amazing Content"
+                contactText="Get in Touch"
+                avatarUrl="/dev.jpeg"
+                miniAvatarUrl="/dev.jpeg"
+                showUserInfo={true}
+                enableTilt={true}
+                enableMobileTilt={false}
+                onContactClick={() => window.location.href = '#contact'}
+              />
+            </div>
+
+            {/* About/Mission Text - RIGHT SIDE */}
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold text-white">Our Mission</h3>
+              <p className="text-white/80 leading-relaxed">
+                We believe that corporate law doesn't have to be boring or intimidating. At The Jargonaut, 
+                we break down complex legal concepts using references from movies, TV shows, and pop culture 
+                that everyone can relate to.
+              </p>
+              <p className="text-white/80 leading-relaxed">
+                Whether you're a law student, professional, or just curious about how the corporate world works, 
+                we're here to make your journey through legal jargon both informative and entertaining.
+              </p>
+              <p className="text-white/80 leading-relaxed">
+                From fintech regulations to corporate governance, from market dynamics to legal tech innovations, 
+                we cover it all with a unique blend of legal expertise and pop culture references that make 
+                learning about law actually fun.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
+}
+
+export default Home;
