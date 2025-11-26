@@ -1,0 +1,106 @@
+// Blog data for server - copied from client
+module.exports = [
+  {
+    id: 1,
+    slug: "sebi-algorithmic-trading-framework",
+    title: "SEBI's Algorithmic Trading Framework: When Retail Meets Regulation",
+    image: "/2.jpeg",
+    fileName: "SEBI's Algorithmic Trading Framework.docx",
+    author: "Dev Agrawal",
+    category: "Securities Regulation",
+    createdAt: "2025-02-01",
+    updatedAt: "2025-02-01",
+    tags: ["SEBI", "Algorithmic Trading", "Retail Investors", "APIs", "White Box", "Black Box"],
+    content: `<p><strong>SEBI's Algorithmic Trading Framework: When Retail Meets Regulation (Or: How I Learned to Stop Worrying and Love the API)</strong></p>...`
+  },
+  {
+    id: 2,
+    slug: "rbi-digital-lending-revolution",
+    title: "RBI's Digital Lending Revolution: From Regulatory Vacuum to Fintech's New Reality Check",
+    image: "/3.jpeg",
+    fileName: "RBI's Digital Lending Revolution_ From Regulatory.docx",
+    author: "Dev Agrawal",
+    category: "Banking & Fintech",
+    createdAt: "2025-05-08",
+    updatedAt: "2025-05-08",
+    tags: ["RBI", "Digital Lending", "Fintech", "Consumer Protection", "DLAs", "LSPs", "CIMS"],
+    content: `<p><strong>RBI's Digital Lending Revolution: From Regulatory Vacuum to Fintech's New Reality Check</strong></p>...`
+  },
+  {
+    id: 3,
+    slug: "fo-money-heist-preopening",
+    title: "The Professor's New Playbook: NSE's PreOpening for F&O",
+    image: "/4.jpeg",
+    fileName: "F&O AND MONEY HEIST (1).docx",
+    author: "Dev Agrawal",
+    category: "Derivatives & Market Microstructure",
+    createdAt: "2025-05-29",
+    updatedAt: "2025-05-29",
+    tags: ["F&O", "Pre-opening session", "NSE", "SEBI", "Derivatives", "Risk Management"],
+    content: `<h2>The Professor's New Playbook: NSE's PreOpening for F&O</h2>...`
+  },
+  {
+    id: 4,
+    slug: "workplace-safety-maternity-disclosures",
+    title: "Profits and Silence: Disclosing Workplace Safety & Maternity Benefits",
+    image: "/5.jpeg",
+    fileName: "disclose data regarding workplace safety and maternity benefits (1).docx",
+    author: "Dev Agrawal",
+    category: "Corporate Governance & Labour",
+    createdAt: "2025-07-14",
+    updatedAt: "2025-07-14",
+    tags: ["MCA", "Companies Act", "POSH", "Maternity Benefit Act", "Board's Report", "ESG", "Workplace Safety"],
+    content: `<p><strong>Profits and Silence</strong></p>...`
+  },
+  {
+    id: 5,
+    slug: "sebi-rpt-homelander-shift",
+    title: "A Calibrated Shift in SEBI's Related-Party Transaction Regime—Explained Through The Boys",
+    image: "/6.jpeg",
+    fileName: "A Calibrated Shift in SEBI.docx",
+    author: "Dev Agrawal",
+    category: "Corporate Governance",
+    createdAt: "2025-08-06",
+    updatedAt: "2025-08-06",
+    tags: ["SEBI", "Related Party Transactions", "Corporate Governance", "The Boys", "Compliance", "Audit Committee"],
+    content: `<p><strong>A Calibrated Shift in SEBI's Related-Party Transaction Regime—Explained Through The Boys</strong></p>...`
+  },
+  {
+    id: 6,
+    slug: "fpi-love-story-ddlj",
+    title: "The FPI Love Story: Dilwale Portfolio Le Jayenge",
+    image: "/7.jpg",
+    fileName: "THE FPI LOVE STORY.pdf",
+    author: "Dev Agrawal",
+    category: "Foreign Investment & Regulations",
+    createdAt: "2025-09-15",
+    updatedAt: "2025-09-15",
+    tags: ["FPI", "SEBI", "RBI", "Dilwale Dulhania Le Jayenge", "Bonds", "Regulatory Reforms"],
+    content: `<p><strong>The FPI Love Story: Dilwale Portfolio Le Jayenge</strong></p>...`
+  },
+  {
+    id: 7,
+    slug: "odr-jolly-llb-telegram",
+    title: "ADR + Jolly LLB + Telegram = ODR: The Digital Shift in Indian Justice",
+    image: "/8.jpeg",
+    fileName: "ADR + Jolly LLB + Telegram = ODR.docx",
+    author: "Dev Agrawal",
+    category: "Legal Tech & Judiciary",
+    createdAt: "2025-10-10",
+    updatedAt: "2025-10-10",
+    tags: ["ODR", "Jolly LLB", "Mediation Act 2023", "Legal Tech", "Sama", "Presolv360", "Access to Justice"],
+    content: `<p><strong>ADR + Jolly LLB + Telegram = ODR: The Digital Shift in Indian Justice</strong></p>...`
+  },
+  {
+    id: 8,
+    slug: "sebi-aiml-guidelines",
+    title: "SEBI's AI/ML Guidelines",
+    image: "/1.jpeg",
+    fileName: "SEBI's consultation paper.docx",
+    author: "Dev Agrawal",
+    category: "Securities Regulation",
+    createdAt: "2025-06-20",
+    tags: ["SEBI", "AI", "Machine Learning", "Securities Market", "Consultation Paper", "Governance", "Investor Protection"],
+    content: `<p><strong>SEBI's AI/ML Guidelines</strong></p>...`
+  }
+];

@@ -1,6 +1,5 @@
-const path = require('path');
-const blogsData = require('../../client_copy/src/data/blogs.jsx');
-const blogList = blogsData.default || blogsData.blogs || blogsData;
+const blogsData = require('../data/blogs.js');
+const blogList = Array.isArray(blogsData) ? blogsData : (blogsData.default || blogsData.blogs || blogsData);
 
 module.exports = async (req, res) => {
   // CORS headers
